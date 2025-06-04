@@ -21,19 +21,21 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pytest-sugar
-          pip install pytest-html
+          pip install allure-pytest
           pip install playwright
           playwright install
-      - name: Run tests
+
+      - name: Install Allure CLI
         run: |
-          if [ -z "${{ github.event.inputs.test_class }}" ]; then
-            pytest --maxfail=1 --disable-warnings -q --html=report.html --self-contained-html
-          else
-            pytest ${{ github.event.inputs.test_class }} --maxfail=1 --disable-warnings -q --html=report.html --self-contained-html
-          fi
-      - name: Upload test report
-        uses: actions/upload-artifact@v2
+          wget -qO- https://github.com/allure-framework/allure2/releases/latest/download/allure-2.21.0.zip > allure.zip
+          unzip allure.zip -d allure
+          sudo ln -s $PWD/allure/bin/allure /usr/bin/allure
+
+      - name: Run tests and generate Allure report
+        run: ./your-test-script.sh
+
+      - name: Upload Allure Report
+        uses: actions/upload-artifact@v3
         with:
-          name: test-report
-          path: report.html
+          name: allure-report
+          path: allure-report
