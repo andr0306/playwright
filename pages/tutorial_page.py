@@ -36,4 +36,3 @@ class TutorialPage(BasePage):
         self.submit_button._element.wait_for(state="visible", timeout=60000)
         self._exercise_option_by_value.get_by_dynamic_value(value).click()
         self.submit_button.click()
-        self.switch_to_new_window()

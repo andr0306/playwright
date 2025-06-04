@@ -3,8 +3,6 @@ import os
 
 import allure
 
-from elements.base_element import BaseElement
-
 def load_config():
     root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     config_path = os.path.join(root_dir, 'config', 'config.json')
