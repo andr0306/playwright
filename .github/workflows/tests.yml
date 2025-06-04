@@ -27,9 +27,9 @@ jobs:
 
       - name: Install Allure CLI
         run: |
-          wget -qO- https://github.com/allure-framework/allure2/releases/latest/download/allure-2.21.0.zip > allure.zip
+          wget -q https://github.com/allure-framework/allure2/releases/latest/download/allure-2.21.0.zip -O allure.zip
           unzip allure.zip -d allure
-          sudo ln -s $PWD/allure/bin/allure /usr/bin/allure
+          sudo ln -s $PWD/allure/bin/allure /usr/bin/allu
 
       - name: Run tests and generate Allure report
         run: ./your-test-script.sh
