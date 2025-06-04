@@ -39,6 +39,9 @@ jobs:
         env:
           ALLURE: 1
 
+      - name: Wait for report to be fully generated
+        run: sleep 20
+
       - name: Check Allure Report Directory (short listing)
         run: |
           echo "Listing contents of allure-report:"
