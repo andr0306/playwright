@@ -42,23 +42,8 @@ jobs:
       - name: Wait for report to be fully generated
         run: sleep 20
 
-      - name: Check Allure Report Directory (short listing)
-        run: |
-          echo "Listing contents of allure-report:"
-          ls -la allure-report || echo "Directory not found"
-
-      - name: Check Allure Report Directory (recursive listing)
-        run: |
-          echo "Recursive listing of allure-report:"
-          find allure-report
-
-      - name: Archive Allure Report
-        run: |
-          echo "Zipping Allure report directory for artifact upload"
-          zip -r allure-report.zip allure-report
-
-      - name: Upload Allure Report
-        uses: actions/upload-artifact@v4
+      - name: Deploy Allure Report to GitHub Pages  # <-- added this block here
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: allure-report
-          path: allure-report
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-report
