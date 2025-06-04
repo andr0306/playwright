@@ -30,6 +30,7 @@ jobs:
           wget -q https://github.com/allure-framework/allure2/releases/download/2.21.0/allure-2.21.0.zip -O allure.zip
           unzip allure.zip -d allure
           echo "$PWD/allure/allure-2.21.0/bin" >> $GITHUB_PATH
+          chmod +x allure/allure-2.21.0/bin/allure
 
       - name: Run tests and generate Allure report
         run: bash ./run.sh
