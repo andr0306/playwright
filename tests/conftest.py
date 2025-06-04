@@ -1,3 +1,5 @@
+import os
+
 from playwright.sync_api import sync_playwright
 import pytest
 
@@ -8,8 +10,9 @@ from pages.tutorial_page import TutorialPage
 
 @pytest.fixture(scope="function")
 def page():
+    headless = os.getenv("CI", "false").lower() == "true"
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
+        browser = p.chromium.launch(headless=headless)
         context = browser.new_context()
         page = context.new_page()
         yield page
