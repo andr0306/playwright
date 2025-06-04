@@ -1,5 +1,12 @@
+name: Test Run
+
 on:
   workflow_dispatch:
+    inputs:
+      test_class:
+        description: 'Test class or file to run (e.g., tests/test_example.py::TestClassName)'
+        required: false
+        default: ''
 
 jobs:
   test:
@@ -17,4 +24,9 @@ jobs:
           pip install playwright
           playwright install
       - name: Run tests
-        run: pytest --maxfail=1 --disable-warnings -q
+        run: |
+          if [ -z "${{ github.event.inputs.test_class }}" ]; then
+            pytest --maxfail=1 --disable-warnings -q
+          else
+            pytest ${{ github.event.inputs.test_class }} --maxfail=1 --disable-warnings -q
+          fi
