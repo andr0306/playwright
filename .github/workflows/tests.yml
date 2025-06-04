@@ -13,10 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -37,10 +39,15 @@ jobs:
         env:
           ALLURE: 1
 
-      - name: Check Allure Report Directory
+      - name: Check Allure Report Directory (short listing)
         run: |
-          echo "Listing contents of allure-report"
+          echo "Listing contents of allure-report:"
           ls -la allure-report || echo "Directory not found"
+
+      - name: Check Allure Report Directory (recursive listing)
+        run: |
+          echo "Recursive listing of allure-report:"
+          find allure-report
 
       - name: Upload Allure Report
         uses: actions/upload-artifact@v4
