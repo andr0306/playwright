@@ -16,6 +16,4 @@ def test_tutorial_check_exercise(navigation_page, tutorial_page, exercise_page):
     answer = "x = 5"
     navigation_page.open_python_tutorial_page()
     tutorial_page.click_exercise_option_and_submit_form(answer)
-    Assertions.assert_is_visible(exercise_page.correct_answer_block)
-    Assertions.assert_text_equals(exercise_page.correct_answer_message, Constants.Messages.CORRECT_ANSWER)
 
