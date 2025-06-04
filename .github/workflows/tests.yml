@@ -39,6 +39,11 @@ jobs:
         env:
           ALLURE: 1
 
+      - name: Check Allure Report Directory
+        run: |
+          echo "Listing contents of allure-report"
+          ls -la allure-report || echo "Directory not found"
+
       - name: Upload Allure Report
         uses: actions/upload-artifact@v4
         with:

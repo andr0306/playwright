@@ -12,7 +12,4 @@ python -m pytest --alluredir=allure-results "$@"
 
 if [ "$ALLURE" -eq 1 ]; then
   allure generate allure-results -o allure-report --clean
-  if [ -z "$CI" ]; then
-    allure open allure-report
-  fi
 fi
