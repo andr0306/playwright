@@ -55,6 +55,12 @@ class Assertions:
             assert text in t
 
     @staticmethod
+    @allure.step("Check text contains all values from list ignoring case")
+    def assert_text_contain_all_values_ignoring_case(text: str, texts_list: list[str]):
+        for t in texts_list:
+            assert text.lower() in t.lower()
+
+    @staticmethod
     @allure.step("Check element count")
     def assert_count(elements, count: int):
         assert len(elements) == count

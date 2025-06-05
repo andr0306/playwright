@@ -1,9 +1,10 @@
-import random
-
 import allure
-from utils.Assertions import Assertions
-import utils.Constants as Constants
-from utils.Random import Random
+import pytest
+
+from utils.assertions import Assertions
+import utils.constants as Constants
+from utils.random import Random
+from utils.data_generators import HomeTestsDataGenerator
 
 @allure.title("Home page transitions")
 def test_home_check_transitions(home_page, tutorial_page):
@@ -24,18 +25,17 @@ def test_home_check_sections(home_page):
     Assertions.assert_all_elements_are_visible(block_elements)
 
 @allure.title("Home page verify search tutorial input")
-def test_home_verify_search(home_page, tutorial_page):
-    tutorial_to_search = Constants.Tutorials.PYTHON
-    tutorial_to_select = Constants.Titles.JAVA_TUTORIAL
+@pytest.mark.parametrize("text_to_search, text_to_select, title_text", list(HomeTestsDataGenerator.verify_search_generator()))
+def test_home_verify_search(home_page, tutorial_page, text_to_search, text_to_select, title_text):
     invalid_tutorial_to_search = Random.get_random_letter_string(10)
-    options_found = home_page.enter_tutorial_and_get_all_options(tutorial_to_search)
-    Assertions.assert_text_contain_all_values(tutorial_to_search, options_found)
+    options_found = home_page.enter_tutorial_and_get_all_options(text_to_search)
+    Assertions.assert_text_contain_all_values_ignoring_case(text_to_search, options_found)
     options_found = home_page.enter_tutorial_and_get_all_options(invalid_tutorial_to_search)
     Assertions.assert_count(options_found, 1)
     Assertions.assert_is_visible(home_page.no_tutorials_found)
-    home_page.enter_tutorial_and_select_option(tutorial_to_select)
+    home_page.enter_tutorial_and_select_option(text_to_select)
     Assertions.assert_is_visible(tutorial_page.tutorial_title)
-    Assertions.assert_text_equals_ignoring_case(tutorial_page.tutorial_title, Constants.Titles.JAVA_TUTORIAL)
+    Assertions.assert_text_equals_ignoring_case(tutorial_page.tutorial_title, title_text)
 
 
 

@@ -5,7 +5,7 @@ from elements.dropdown_element import DropdownElement
 from elements.input_element import InputElement
 from pages.base_page import BasePage
 from elements.base_element import BaseElement
-from utils.Locators import HomePageLocators
+from utils.locators import HomePageLocators
 
 class HomePage(BasePage):
     def __init__(self, page):

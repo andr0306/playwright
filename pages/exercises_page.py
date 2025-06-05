@@ -1,6 +1,6 @@
 from elements.base_element import BaseElement
 from pages.base_page import BasePage
-from utils.Locators import ExercisesPageLocators
+from utils.locators import ExercisesPageLocators
 
 class ExercisePage(BasePage):
     def __init__(self, page):

@@ -1,7 +1,7 @@
 import allure
 
-from utils import Constants
-from utils.Assertions import Assertions
+from utils import constants
+from utils.assertions import Assertions
 
 @allure.description("Check tutorial titles changing")
 def test_tutorial_verify_titles(home_page, tutorial_page):

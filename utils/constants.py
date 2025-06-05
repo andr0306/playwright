@@ -1,5 +1,3 @@
-import allure
-
 class Titles:
     HTML_TUTORIAL = "HTML Tutorial"
     JAVA_TUTORIAL = "JAVA Tutorial"

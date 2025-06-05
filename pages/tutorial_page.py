@@ -6,7 +6,7 @@ import allure
 from elements.button_element import ButtonElement
 from pages.base_page import BasePage
 from elements.base_element import BaseElement
-from utils.Locators import TutorialPageLocators
+from utils.locators import TutorialPageLocators
 
 class TutorialPage(BasePage):
     def __init__(self, page):

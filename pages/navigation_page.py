@@ -2,7 +2,7 @@ import allure
 
 from elements.base_element import BaseElement
 from pages.base_page import BasePage
-from utils.Locators import NavigationLocators
+from utils.locators import NavigationLocators
 
 
 class NavigationPage(BasePage):

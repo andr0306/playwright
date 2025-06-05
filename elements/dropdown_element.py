@@ -1,7 +1,7 @@
 import allure
 
 from elements.base_element import BaseElement
-from utils.Locators import GeneralLocators
+from utils.locators import GeneralLocators
 
 class DropdownElement(BaseElement):
     def __init__(self, page, locator, name):
