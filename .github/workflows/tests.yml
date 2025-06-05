@@ -27,23 +27,6 @@ jobs:
           pip install playwright
           playwright install
 
-      - name: Install Allure CLI
-        run: |
-          wget -q https://github.com/allure-framework/allure2/releases/download/2.21.0/allure-2.21.0.zip -O allure.zip
-          unzip allure.zip -d allure
-          echo "$PWD/allure/allure-2.21.0/bin" >> $GITHUB_PATH
-          chmod +x allure/allure-2.21.0/bin/allure
-
-      - name: Run tests and generate Allure report
+      - name: Run tests
         run: bash ./run.sh
-        env:
-          ALLURE: 1
 
-      - name: Wait for report to be fully generated
-        run: sleep 20
-
-      - name: Deploy Allure Report to GitHub Pages  # <-- added this block here
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./allure-report
